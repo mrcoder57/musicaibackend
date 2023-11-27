@@ -39,7 +39,7 @@ const userRegistration=async (req, res) => {
         if (!isPasswordCorrect) {
           res.status(401).json({ error: "Invalid credentials" });
         } else {
-          const token = jwt.sign({ userId: user.userid }, 'aapkaswagathai', { expiresIn: '1h' });
+          const token = jwt.sign({ userId: user.id }, 'aapkaswagathai', { expiresIn: '1h' });
   
           res.json({ message: "Login successful", user, token });
         }
