@@ -4,6 +4,6 @@ import { getAllArtists,getTopArtists,getArtistById } from '../controllers/artist
 
 router.get('/',getAllArtists);
 router.get('/:id',getArtistById);
-router.get('/top',getTopArtists);
+router.get('/top/top5',getTopArtists);
 
 export default router
