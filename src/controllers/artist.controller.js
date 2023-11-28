@@ -47,4 +47,27 @@ const getTopArtists = async (req, res) => {
       res.status(500).json({ error: 'Error getting all artists' });
     }
   };
-  export {getTopArtists,getAllArtists}
+  const getArtistById = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      const artist = await prisma.user.findUnique({
+        where: {
+          id: parseInt(id),
+        },
+        include: {
+          songs: true,
+        },
+      });
+  
+      if (!artist) {
+        return res.status(404).json({ error: 'Artist not found' });
+      }
+  
+      res.json(artist);
+    } catch (error) {
+      
+      res.status(500).json({ error: 'Error getting artist by ID',error: error.message });
+    }
+  };
+  export {getTopArtists,getAllArtists,getArtistById}
